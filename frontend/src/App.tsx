@@ -30,7 +30,7 @@ function App() {
 
 
   //receive message
-  useEffect(() => {
+useEffect(() => {
      socket.on('chat', (data: string) => {
        setMessages([...messages, data])
      })
