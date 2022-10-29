@@ -1,14 +1,16 @@
 const http = require("http");
 const express = require("express");
 const app = express();
-
+const path = require("path");
 const { Server } = require("socket.io");
 const cors = require("cors");
 
 //server setup
 const server = http.createServer(app);
+
 //middleware
 app.use(cors());
+app.use(express.static(path.join(__dirname + "/public")));
 
 app.get("/", (req, res) => {
   res.json({ message: "hello world" });
@@ -37,5 +39,5 @@ io.on("connection", (socket) => {
 //listen to PORT
 const PORT = process.env.PORT || 9000;
 server.listen(PORT, () => {
-  console.log("server listenning on port" + PORT);
+  console.log("server listenning on port " + PORT);
 });
